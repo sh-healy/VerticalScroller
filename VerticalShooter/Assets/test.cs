@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test : MonoBehaviour {
+public class test : Singleton<test> {
 
-    public GameObject prefab;
-    public float speed;
-    Rigidbody2D rb;
+    public GameObject[] enemies;
+    public Tree enemyTree;
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Awake () {
+
+        enemyTree = new Tree();
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemyTree.Add(enemies[i]);
+        }
+
+
+        
+    }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Instantiate(prefab);
-            //rb = prefab.GetComponent<Rigidbody2D>();
-            //rb.velocity = transform.up * speed;
-
-        }
+       
     }
 }

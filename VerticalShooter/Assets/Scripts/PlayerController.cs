@@ -19,9 +19,20 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     [SerializeField] private float speed;
 
+    /// <summary>
+    /// Enemy Controller
+    /// </summary>
+    [SerializeField] private EnemyController enemyController;
+
+    public bool shoot;
+    public test tst;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (shoot)
+            InvokeRepeating("Shoot", 1, 20f);
     }
 
     // Update is called once per frame
@@ -43,6 +54,29 @@ public class PlayerController : MonoBehaviour {
         else
         {
             rb.MovePosition(transform.position + Vector3.down);
+        }
+
+    }
+
+    private void Shoot()
+    {
+        GameObject playerBullet = PlayerBulletController.Instance.GetObjectFromPool();
+
+        if (playerBullet != null)
+        {
+            GameObject closestEnemy = enemyController.activeEnemies.GetClosest(transform.position);
+
+            playerBullet.SetActive(true);
+            if (closestEnemy != null)
+            {
+                Debug.Log("found enemy: " + closestEnemy.name);
+                Vector3 bulletTarget = closestEnemy.transform.position;
+                playerBullet.GetComponent<Bullet>().Shoot(transform.position, bulletTarget);
+            }
+            else
+                Debug.Log("No enemy");
+
+
         }
 
     }

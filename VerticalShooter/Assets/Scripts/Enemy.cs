@@ -14,17 +14,20 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     private float fireRate;
 
+    public bool shoot;
+
     private void OnEnable()
     {
         fireRate = Random.Range(.6f, 1.2f);
-        InvokeRepeating("FireBullets", 0, fireRate);
+        if (shoot)
+            InvokeRepeating("Shoot", 0, fireRate);
         //FireBullets();
     }
 
     /// <summary>
     /// Retrieves a bullet from the bullet pool and calls the fire method on the bullet script
     /// </summary>
-    private void FireBullets()
+    private void Shoot()
     {
         GameObject enemyBullet = EnemyBulletController.Instance.GetObjectFromPool();
 
@@ -33,17 +36,20 @@ public class Enemy : MonoBehaviour {
             enemyBullet.SetActive(true);
 
             Vector3 bulletTarget = new Vector3(controller.PlayerPos.position.x, transform.position.y, transform.position.z);
-            enemyBullet.GetComponent<Bullet>().Fire(transform.position, bulletTarget);
+            enemyBullet.GetComponent<Bullet>().Shoot(transform.position, bulletTarget);
         }
         
     }
 
 
-    private void OnCollisionEnter(Collision coll)
+    private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "bullet")
+        if (coll.gameObject.tag == "bullet" || coll.gameObject.tag== "Boundaries")
         {
+            //remove it from active enemies list
+            controller.activeEnemies.RemoveObj(gameObject);
             gameObject.SetActive(false);
+
         }
     }
 

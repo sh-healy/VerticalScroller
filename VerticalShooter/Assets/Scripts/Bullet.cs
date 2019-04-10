@@ -23,17 +23,10 @@ public class Bullet : MonoBehaviour {
     /// Sets the diretion of the bullet
     /// </summary>
     /// <param name="direction">the target the bullet should aim towards</param>
-    public void Fire(Vector3 spawnerPos , Vector3 targetDir)
+    public void Shoot(Vector3 spawnerPos , Vector3 targetDir)
     {
         transform.position = spawnerPos;
-        targetDir = (targetDir - transform.position).normalized;
         GetComponent<Rigidbody2D>().AddForce(targetDir * speed);
-    }
-
-    private void Update()
-    {
-        //if(beingFired)
-            //GetComponent<Rigidbody2D>().AddForce (Vector3.forward * speed);
     }
 
     private void OnDisable()
@@ -43,6 +36,7 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log("BULLET HIT");
         gameObject.SetActive(false);
     }
 }

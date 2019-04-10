@@ -5,6 +5,11 @@ using UnityEngine;
 public class EnemyController : PoolSpawner {
 
     /// <summary>
+    /// List of enemies that are currently active in the scene
+    /// </summary>
+    [HideInInspector] public Tree activeEnemies = new Tree();
+
+    /// <summary>
     /// players position
     /// </summary>
     [SerializeField] private Transform playerPos;
@@ -54,10 +59,17 @@ public class EnemyController : PoolSpawner {
             GameObject newEnemy = GetObjectFromPool();
 
             enemysXpos = Random.Range(1, 10) % 2 == 0 ? gapBetweenPlayerAndEnemy*-1 : gapBetweenPlayerAndEnemy;
-            newEnemy.transform.position = new Vector2(enemysXpos, enemysYpos);
-            enemysYpos = enemysYpos + gapBetweenEnemies;
 
-            newEnemy.SetActive(true);
+            if (newEnemy != null)
+            {
+                newEnemy.name = "enemy " + i;
+                newEnemy.transform.position = new Vector2(enemysXpos, enemysYpos);
+                enemysYpos = enemysYpos + gapBetweenEnemies;
+
+                newEnemy.SetActive(true);
+                activeEnemies.Add(newEnemy);
+            }
+            
         }
     }
 
