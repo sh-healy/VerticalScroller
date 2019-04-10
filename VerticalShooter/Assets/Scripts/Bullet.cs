@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour {
     {
         transform.position = spawnerPos;
         targetDir = (targetDir - transform.position).normalized;
-        GetComponent<Rigidbody2D>().AddForce(transform.right * speed);
+        GetComponent<Rigidbody2D>().AddForce(targetDir * speed);
     }
 
     private void Update()

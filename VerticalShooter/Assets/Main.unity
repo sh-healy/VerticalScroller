@@ -235,6 +235,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1867938010002962, guid: b28dcd40f034ebc408901b9cb0362aa3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b28dcd40f034ebc408901b9cb0362aa3, type: 2}
   m_IsPrefabParent: 0
@@ -840,7 +844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1786568602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1101,7 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPool: []
-  poolAmount: 1
+  poolAmount: 5
   objectInPool: {fileID: 1679806827405984, guid: cb4b9ec6f54fae44a80a0f1dc2787218,
     type: 2}
   playerPos: {fileID: 784469201}
@@ -1120,7 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPool: []
-  poolAmount: 10
+  poolAmount: 100
   objectInPool: {fileID: 1945315505100598, guid: 88b7591ef154dda4c9674772c113b473,
     type: 2}
 --- !u!114 &2002915779

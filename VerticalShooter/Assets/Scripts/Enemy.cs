@@ -9,9 +9,15 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public EnemyController controller;
 
+    /// <summary>
+    /// rate of repeat on enemy fire
+    /// </summary>
+    private float fireRate;
+
     private void OnEnable()
     {
-        InvokeRepeating("FireBullets", 0, .5f);
+        fireRate = Random.Range(.6f, 1.2f);
+        InvokeRepeating("FireBullets", 0, fireRate);
         //FireBullets();
     }
 
@@ -25,7 +31,9 @@ public class Enemy : MonoBehaviour {
         if (enemyBullet != null)
         {
             enemyBullet.SetActive(true);
-            enemyBullet.GetComponent<Bullet>().Fire(transform.position, controller.PlayerPos.position);
+
+            Vector3 bulletTarget = new Vector3(controller.PlayerPos.position.x, transform.position.y, transform.position.z);
+            enemyBullet.GetComponent<Bullet>().Fire(transform.position, bulletTarget);
         }
         
     }
