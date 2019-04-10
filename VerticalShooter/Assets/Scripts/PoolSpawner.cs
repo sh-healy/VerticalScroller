@@ -21,7 +21,7 @@ public class PoolSpawner : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    protected virtual void Start () {
 
         for (int i = 0; i < poolAmount; i++)
         {
@@ -39,7 +39,7 @@ public class PoolSpawner : MonoBehaviour {
     {
         for (int i = 0; i < objectPool.Count; i++)
         {
-            if (!objectPool[i].active)
+            if (!objectPool[i].activeInHierarchy)
                 return objectPool[i];
 
         }

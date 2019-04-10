@@ -7,7 +7,7 @@ public class SpawnPoint : MonoBehaviour {
     /// <summary>
     /// script that spawns enemies
     /// </summary>
-    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private EnemyController enemySpawner;
 
     /// <summary>
     /// distance between spawn points
