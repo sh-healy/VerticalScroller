@@ -56,7 +56,7 @@ public class EnemyController : PoolSpawner {
     /// </summary>
     public void SpawnEnemies()
     {
-        float enemysYpos=playerPos.position.y+5;
+        float enemysYpos=playerPos.position.y+ gapBetweenEnemies;
         float enemysXpos;
 
         for (int i = 0; i < spawnAmount; i++)
