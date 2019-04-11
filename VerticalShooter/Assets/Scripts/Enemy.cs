@@ -14,14 +14,34 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     private float fireRate;
 
+    /// <summary>
+    /// Stops enemy being able to shoot
+    /// </summary>
     public bool shoot;
 
+    #region Monobehaviour methods
     private void OnEnable()
     {
         fireRate = Random.Range(.6f, 1.2f);
         if (shoot)
             InvokeRepeating("Shoot", 0, fireRate);
     }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Bullet")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        controller.activeEnemies.RemoveObj(gameObject);
+        CancelInvoke();
+    }
+
+    #endregion Monobehaviour methods
 
     /// <summary>
     /// Retrieves a bullet from the bullet pool and calls the fire method on the bullet script
@@ -41,18 +61,5 @@ public class Enemy : MonoBehaviour {
         
     }
 
-
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Bullet")
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
-    private void OnDisable()
-    {
-        controller.activeEnemies.RemoveObj(gameObject);
-        CancelInvoke();
-    }
+    
 }

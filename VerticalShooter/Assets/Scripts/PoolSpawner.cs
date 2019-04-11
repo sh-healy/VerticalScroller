@@ -46,4 +46,15 @@ public class PoolSpawner : MonoBehaviour {
 
         return null;
     }
+
+    /// <summary>
+    /// Deactivates all objects in the pool
+    /// </summary>
+    public void ReturnAllObjectsToPool()
+    {
+        for (int i = 0; i < objectPool.Count; i++)
+        {
+            objectPool[i].SetActive(false);
+        }
+    }
 }

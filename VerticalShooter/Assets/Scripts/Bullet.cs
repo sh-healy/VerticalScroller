@@ -10,30 +10,16 @@ public class Bullet : MonoBehaviour {
     private bool beingFired;
 
     /// <summary>
-    /// speed the bullet travels ats
-    /// </summary>
-    [SerializeField] float speed;
-
-    /// <summary>
     /// direction for the bullet to go
     /// </summary>
     private Vector3 targetDir;
 
     /// <summary>
-    /// Sets the diretion of the bullet
+    /// speed the bullet travels ats
     /// </summary>
-    /// <param name="direction">the target the bullet should aim towards</param>
-    public void Shoot(Vector3 spawnerPos , Vector3 targetDir)
-    {
-        transform.position = spawnerPos;
-        GetComponent<Rigidbody2D>().AddForce(targetDir * speed);
-        //beingFired = true;
-    }
+    [SerializeField] float speed;
 
-    private void Update()
-    {
-        
-    }
+    #region Monobehaviour methods
 
     private void OnDisable()
     {
@@ -44,4 +30,17 @@ public class Bullet : MonoBehaviour {
     { 
         gameObject.SetActive(false);
     }
+
+    #endregion Monobehaviour methods
+
+    /// <summary>
+    /// Sets the diretion of the bullet
+    /// </summary>
+    /// <param name="direction">the target the bullet should aim towards</param>
+    public void Shoot(Vector3 spawnerPos, Vector3 targetDir)
+    {
+        transform.position = spawnerPos;
+        GetComponent<Rigidbody2D>().AddForce(targetDir * speed);
+    }
+
 }

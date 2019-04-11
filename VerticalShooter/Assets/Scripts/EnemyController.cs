@@ -37,14 +37,19 @@ public class EnemyController : PoolSpawner {
         }
     }
 
+    #region Monobehaviour methods
+    
     protected override void Start()
     {
         base.Start();
+        GameMang.Instance.GameFinished += GameEnd;
         for (int i = 0; i < objectPool.Count; i++)
         {
             objectPool[i].GetComponent<Enemy>().controller = this;
         }
     }
+
+    #endregion Monobehaviour methods
 
     /// <summary>
     /// Spawns an amount of players in front of the player
@@ -71,6 +76,14 @@ public class EnemyController : PoolSpawner {
             }
             
         }
+    }
+
+    /// <summary>
+    /// Invoked when player is shot
+    /// </summary>
+    private void GameEnd()
+    {
+        ReturnAllObjectsToPool();
     }
 
 

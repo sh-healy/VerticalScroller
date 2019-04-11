@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour {
     private bool moveForward;
     
     /// <summary>
+    /// Game over and player shouldn't move
+    /// </summary>
+    private bool gameOver = false;
+
+    /// <summary>
     /// player's rigidbody
     /// </summary>
     private Rigidbody2D rb;
@@ -24,8 +29,12 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     [SerializeField] private EnemyController enemyController;
 
-    public bool shoot;
-    public test tst;
+    /// <summary>
+    /// Stops player being able to shoot
+    /// </summary>
+   [SerializeField] private bool shoot;
+
+    #region Monobehaviour methods
 
     private void Start()
     {
@@ -46,17 +55,29 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (moveForward)
+        if (!gameOver)
         {
-            //Vector3 newPos = (speed * Vector3.up) * Time.deltaTime;
-            rb.MovePosition(transform.position + Vector3.up * speed * Time.deltaTime);
-        }
-        else
-        {
-            rb.MovePosition(transform.position + Vector3.down * speed * Time.deltaTime);
+            if (moveForward)
+                 rb.MovePosition(transform.position + Vector3.up * speed * Time.deltaTime);
+            else
+                rb.MovePosition(transform.position + Vector3.down * speed * Time.deltaTime);
+            
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Bullet")
+        {
+            GameMang.Instance.GameEnd();
+            gameOver = true;
+            CancelInvoke();
+            //gameObject.SetActive(false);
+        }
+    }
+
+    #endregion Monobehaviour methods
 
     /// <summary>
     /// AutoFires bullet at closest enemy
@@ -73,25 +94,16 @@ public class PlayerController : MonoBehaviour {
             if (closestEnemy != null)
             {
                 playerBullet.SetActive(true);
-                Debug.Log("found enemy: " + closestEnemy.name);
 
                 Vector3 bulletTarget = closestEnemy.transform.position;
                 playerBullet.GetComponent<Bullet>().Shoot(transform.position, bulletTarget);
             }
-            else
-                Debug.Log("No enemy");
 
 
         }
 
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Bullet")
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    
 
 }

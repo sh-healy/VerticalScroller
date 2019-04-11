@@ -2,18 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreKeeper : MonoBehaviour
+public class ScoreKeeper : Singleton<ScoreKeeper>
 {
-    /// <summary>
-    /// Player position to keep track of how far they go
-    /// </summary>
-    [SerializeField]private Transform player;
-
-    /// <summary>
-    /// Players y position
-    /// </summary>
-    private float playersY;
-
+    
     /// <summary>
     /// Highest score player has eveer gotten
     /// </summary>
@@ -24,13 +15,27 @@ public class ScoreKeeper : MonoBehaviour
     /// </summary>
     public float CurrentScore { get; private set; }
 
-	// Use this for initialization
-	private void Start () {
+    /// <summary>
+    /// Players y position
+    /// </summary>
+    private float playersY;
+
+    /// <summary>
+    /// Player position to keep track of how far they go
+    /// </summary>
+    [SerializeField] private Transform player;
+
+    #region Monobehaviour methods
+
+    // Use this for initialization
+    private void Start () {
 
         if (PlayerPrefs.HasKey("HighestScore"))
             HighestScore = PlayerPrefs.GetFloat("HighestScore");
         else
             HighestScore = 0;
+
+        GameMang.Instance.GameFinished += GameEnd;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +46,11 @@ public class ScoreKeeper : MonoBehaviour
 		
 	}
 
+    #endregion Monobehaviour methods
+
+    /// <summary>
+    /// Invoked when player hit
+    /// </summary>
     private void GameEnd()
     {
         HighestScore = CurrentScore;

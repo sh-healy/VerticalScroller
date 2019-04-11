@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class Tree
 {
+    /// <summary>
+    /// root of the tree, first node added
+    /// </summary>
+    private TreeNode root;
 
-    public TreeNode root { get; private set; }
-    public TreeNode last { get; private set; }
-    public int count;
+    /// <summary>
+    /// the last node inserted into the tree
+    /// </summary>
+    private TreeNode last;
+
+    /// <summary>
+    /// Amount of objects added to tree
+    /// </summary>
+    private int count;
+
+    /// <summary>
+    /// List of all the nodes in the tree
+    /// </summary>
     public TreeNode[] nodesInTree;
 
     #region pubic methods
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public Tree()
     {
     }
@@ -88,16 +106,17 @@ public class Tree
     private void AddToTree(TreeNode addedNode)
     {
         
-        Debug.Log("Now adding: " + addedNode.obj.name);
-
         addedNode.left = null;
         addedNode.right = null;
         addedNode.level = 0;
 
+        //increase count of nodes
         count++;
 
+        //get the parent of the node
         TreeNode parent = GetParent(addedNode.obj.transform.position);
 
+        //no root yet
         if (parent == null)
         {
             root = addedNode;
@@ -111,16 +130,16 @@ public class Tree
         
         addedNode.level = parent.level + 1;
         
+        //check if comparing the x or y based on level
         float xyOfParentNode = CheckXOrY(parent.level, parent.obj.transform.position);
         float xyOfNewNode = CheckXOrY(parent.level, addedNode.obj.transform.position);
 
+        //if x or y is less than parent node add to the left else right
         if (xyOfNewNode < xyOfParentNode)
             parent.left = addedNode;
         else
             parent.right = addedNode;
-
-
-        
+    
     }
 
     /// <summary>
@@ -135,10 +154,13 @@ public class Tree
 
         while (current != null)
         {
+            //check if comparing the x or y based on level
             float xyOfCurrNode = CheckXOrY(current.level, current.obj.transform.position);
             float xyOfNewNode = CheckXOrY(current.level, position);
 
             parent = current;
+
+            //if x or y is less than parent node move to the left else move to the right
             if (xyOfNewNode < xyOfCurrNode)
                 current = current.left;
             else
@@ -198,11 +220,11 @@ public class Tree
                 nearest = current;
             }
 
-            //check against either x or y value
+            //check if comparing the x or y based on level
             float xyOfCurrNode = CheckXOrY(current.level, current.obj.transform.position);
             float xyOfSearchNode = CheckXOrY(current.level, position);
 
-
+            //if x or y of position being checked is less than than the x/y of current node
             if (xyOfSearchNode < xyOfCurrNode)
             {
                 //go left
@@ -230,7 +252,7 @@ public class Tree
     }
 
     /// <summary>
-    /// checks if we should be compaing the x or y value of the point on the tree based on the branch
+    /// checks if we should be compaing the x or y value of the point on the tree based on the level
     /// </summary>
     /// <param name="lvl">level were checking against, determines whether its x aligned or y aligned</param>
     /// <param name="position">the position in the tree were checking against or inserting</param>
@@ -263,12 +285,35 @@ public class Tree
 
 public class TreeNode
 {
+    /// <summary>
+    /// GameObject well be using the position of to insert into tree
+    /// </summary>
     public GameObject obj;
+
+    /// <summary>
+    /// level of the tree it's on
+    /// </summary>
     public int level;
+
+    /// <summary>
+    /// left subtree of node
+    /// </summary>
     public TreeNode left;
+
+    /// <summary>
+    /// right subtree of node
+    /// </summary>
     public TreeNode right;
+
+    /// <summary>
+    /// next node in list
+    /// </summary>
     public TreeNode next;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="newObj"></param>
     public TreeNode(GameObject newObj)
     {
         obj = newObj;
