@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour {
     #region Monobehaviour methods
     private void OnEnable()
     {
-        fireRate = Random.Range(.6f, 1.2f);
+        fireRate = Random.Range(1f, 2f);
         if (shoot)
             InvokeRepeating("Shoot", 0, fireRate);
     }

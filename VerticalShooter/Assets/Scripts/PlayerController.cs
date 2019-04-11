@@ -25,14 +25,21 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float speed;
 
     /// <summary>
-    /// Enemy Controller
+    /// Speed for the player to travel
     /// </summary>
-    [SerializeField] private EnemyController enemyController;
+    [SerializeField] private float fireRate = 1f;
 
     /// <summary>
     /// Stops player being able to shoot
     /// </summary>
-   [SerializeField] private bool shoot;
+    [SerializeField] private bool shoot;
+
+    /// <summary>
+    /// Enemy Controller
+    /// </summary>
+    [SerializeField] private EnemyController enemyController;
+
+    
 
     #region Monobehaviour methods
 
@@ -41,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         if (shoot)
-            InvokeRepeating("Shoot", 1, 5f);
+            InvokeRepeating("Shoot", 1, fireRate);
     }
 
     // Update is called once per frame
@@ -93,6 +100,7 @@ public class PlayerController : MonoBehaviour {
             
             if (closestEnemy != null)
             {
+                Debug.Log("ClosestEnemy is: " +  closestEnemy.name);
                 playerBullet.SetActive(true);
 
                 Vector3 bulletTarget = closestEnemy.transform.position;

@@ -178,6 +178,82 @@ Transform:
   m_PrefabParentObject: {fileID: 4056678185113384, guid: cb4b9ec6f54fae44a80a0f1dc2787218,
     type: 2}
   m_PrefabInternal: {fileID: 115461720}
+--- !u!1 &164859270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 164859271}
+  - component: {fileID: 164859273}
+  - component: {fileID: 164859272}
+  m_Layer: 9
+  m_Name: GameOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &164859271
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164859270}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 312213757}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.3, y: -8.1}
+  m_SizeDelta: {x: 457.2, y: 229.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &164859272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164859270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Game Over
+
+    Press R to Restart'
+--- !u!222 &164859273
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164859270}
 --- !u!1 &200717255
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +374,7 @@ RectTransform:
   m_Children:
   - {fileID: 1751423391}
   - {fileID: 452218931}
+  - {fileID: 164859271}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1134,10 +1211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a2c71667b31f94193b53d5bf4ff550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.75
-  enemyController: {fileID: 2002915777}
+  speed: 2
+  fireRate: 1
   shoot: 1
-  tst: {fileID: 2002915780}
+  enemyController: {fileID: 2002915777}
 --- !u!58 &784469204
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1868,6 +1945,8 @@ GameObject:
   - component: {fileID: 2002915778}
   - component: {fileID: 2002915779}
   - component: {fileID: 2002915780}
+  - component: {fileID: 2002915782}
+  - component: {fileID: 2002915781}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1952,3 +2031,29 @@ MonoBehaviour:
   - {fileID: 668395564}
   - {fileID: 115461721}
   - {fileID: 482333395}
+--- !u!114 &2002915781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002915775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b5e74e0affd2f43b28e0be9f718457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTxt: {fileID: 445504000}
+  highscore: {fileID: 1360938449}
+  gameOverScreen: {fileID: 164859270}
+--- !u!114 &2002915782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002915775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0798e37427d27c148ade71153903a72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 784469201}

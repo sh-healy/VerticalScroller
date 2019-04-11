@@ -30,10 +30,9 @@ public class ScoreKeeper : Singleton<ScoreKeeper>
     // Use this for initialization
     private void Start () {
 
-        if (PlayerPrefs.HasKey("HighestScore"))
-            HighestScore = PlayerPrefs.GetFloat("HighestScore");
-        else
-            HighestScore = 0;
+
+        HighestScore = PlayerPrefs.HasKey("HighestScore")? PlayerPrefs.GetFloat("HighestScore") : 0;
+        
 
         GameMang.Instance.GameFinished += GameEnd;
 	}

@@ -80,8 +80,7 @@ public class Tree
         {
             AddToTree(treeNodes[i]);
         }
-
-        Debug.Log("removed object");
+        
     }
 
     /// <summary>

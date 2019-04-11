@@ -25,12 +25,19 @@ public class UIController : MonoBehaviour {
     /// </summary>
     [SerializeField] private Text highscore;
 
+    /// <summary>
+    /// Ui for game over
+    /// </summary>
+    [SerializeField] private GameObject gameOverScreen;
+
     // Use this for initialization
     private void Start ()
     {
         GameMang.Instance.GameFinished += GameEnd;
         scoreKeeper = ScoreKeeper.Instance;
         highscore.text = scoreKeeper.HighestScore.ToString();
+
+        StartCoroutine(UpdateScore());
 	}
 
     /// <summary>
@@ -52,6 +59,7 @@ public class UIController : MonoBehaviour {
     private void GameEnd()
     {
         gameOver = true;
+        gameOverScreen.SetActive(true);
     }
 	
 	
