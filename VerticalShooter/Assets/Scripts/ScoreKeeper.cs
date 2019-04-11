@@ -52,7 +52,7 @@ public class ScoreKeeper : Singleton<ScoreKeeper>
     /// </summary>
     private void GameEnd()
     {
-        HighestScore = CurrentScore;
-        PlayerPrefs.SetFloat("HighestScore", HighestScore);
+        if(CurrentScore>HighestScore)
+            PlayerPrefs.SetFloat("HighestScore", CurrentScore);
     }
 }
