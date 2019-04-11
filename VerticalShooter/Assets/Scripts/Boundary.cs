@@ -6,7 +6,7 @@ public class Boundary : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        Debug.Log("Boundary Hit: " + coll.gameObject.name);
+    //    Debug.Log("Boundary Hit: " + coll.gameObject.name);
         coll.gameObject.SetActive(false);
     }
 }

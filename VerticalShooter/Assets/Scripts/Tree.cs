@@ -15,12 +15,21 @@ public class Tree
     {
     }
 
+    /// <summary>
+    /// Creates a new node with a reference to a game object and adds it to the tree
+    /// </summary>
+    /// <param name="newObj">new object to add to tree</param>
     public void Add(GameObject newObj)
     {
         TreeNode newNode = new TreeNode(newObj);
         AddToTree(newNode);
     }
 
+    /// <summary>
+    /// Gets the closest object to a point
+    /// </summary>
+    /// <param name="position">the point to find the closest object to</param>
+    /// <returns>The GO which is the closest to that point</returns>
     public GameObject GetClosest(Vector2 position)
     {
         TreeNode closestNode = FindClosest(position);
@@ -30,6 +39,10 @@ public class Tree
             return null;
     }
 
+    /// <summary>
+    /// Removes object from the tree
+    /// </summary>
+    /// <param name="obj">object to remove from tree</param>
     public void RemoveObj(GameObject obj)
     {
         List<TreeNode> treeNodes = GetList();
@@ -53,12 +66,16 @@ public class Tree
         Debug.Log("removed object");
     }
 
+    /// <summary>
+    /// Clears tree of all objects
+    /// </summary>
     public void EmptyTree()
     {
         root = null;
         last = null;
         count = 0;
     }
+
 
     #endregion pubic methods
 
@@ -70,6 +87,9 @@ public class Tree
     /// <param name="addedNode">the new node to add</param>
     private void AddToTree(TreeNode addedNode)
     {
+        
+        Debug.Log("Now adding: " + addedNode.obj.name);
+
         addedNode.left = null;
         addedNode.right = null;
         addedNode.level = 0;
@@ -85,10 +105,9 @@ public class Tree
             return;
         }
 
-        if (last != null)
-            last.next = addedNode;
-        else
-            last = addedNode;
+        
+        last.next = addedNode;
+        last = addedNode;
         
         addedNode.level = parent.level + 1;
         
@@ -99,6 +118,8 @@ public class Tree
             parent.left = addedNode;
         else
             parent.right = addedNode;
+
+
         
     }
 
@@ -228,7 +249,7 @@ public class Tree
     {
         List<TreeNode> nodesAdded = new List<TreeNode>();
         TreeNode current = root;
-        while (current.next!=null)
+        while (current!=null)
         {
             nodesAdded.Add(current);
             current = current.next;
