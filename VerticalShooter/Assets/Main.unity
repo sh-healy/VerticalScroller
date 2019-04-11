@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4056678185113384, guid: cb4b9ec6f54fae44a80a0f1dc2787218, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1679806827405984, guid: cb4b9ec6f54fae44a80a0f1dc2787218, type: 2}
       propertyPath: m_IsActive
@@ -222,13 +222,15 @@ GameObject:
   - component: {fileID: 371370334}
   - component: {fileID: 371370332}
   - component: {fileID: 371370331}
+  - component: {fileID: 371370333}
+  - component: {fileID: 371370335}
   m_Layer: 9
   m_Name: Boundaries
   m_TagString: Boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &371370330
 Transform:
   m_ObjectHideFlags: 0
@@ -248,13 +250,13 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 371370329}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.42036676, y: -10.203467}
+  m_Offset: {x: 0.42041016, y: -10.203467}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -265,7 +267,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.056786, y: 0.99999046}
+  m_Size: {x: 49.112106, y: 0.99999046}
   m_EdgeRadius: 0
 --- !u!61 &371370332
 BoxCollider2D:
@@ -276,10 +278,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.031605, y: 0.057323456}
+  m_Offset: {x: 7.031605, y: 21.360043}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -290,8 +292,19 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92355347, y: 10.133438}
+  m_Size: {x: 0.92355347, y: 52.738876}
   m_EdgeRadius: 0
+--- !u!114 &371370333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 371370329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59eaa77bb82f12e40b9efc05309efb9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &371370334
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -304,7 +317,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.0124884, y: 0.05732441}
+  m_Offset: {x: -7.0124884, y: 21.40807}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -315,8 +328,28 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.80892324, y: 9.980577}
+  m_Size: {x: 0.8089237, y: 52.682076}
   m_EdgeRadius: 0
+--- !u!50 &371370335
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 371370329}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &433973220
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +471,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4056678185113384, guid: cb4b9ec6f54fae44a80a0f1dc2787218, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1679806827405984, guid: cb4b9ec6f54fae44a80a0f1dc2787218, type: 2}
       propertyPath: m_IsActive
@@ -856,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a2c71667b31f94193b53d5bf4ff550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 0.075
   enemyController: {fileID: 2002915777}
   shoot: 1
   tst: {fileID: 2002915780}
@@ -1189,7 +1222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 2002915777}
-  spaceBetweenSpawns: 2
+  spaceBetweenSpawns: 8
 --- !u!1 &1851222376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1438,7 @@ MonoBehaviour:
     type: 2}
   playerPos: {fileID: 784469201}
   spawnAmount: 10
-  gapBetweenEnemies: 2
+  gapBetweenEnemies: 4
   gapBetweenPlayerAndEnemy: 5
 --- !u!114 &2002915778
 MonoBehaviour:

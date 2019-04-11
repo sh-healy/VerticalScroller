@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  shoot: 0
+  shoot: 1
 --- !u!212 &212980801200128756
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         if (shoot)
-            InvokeRepeating("Shoot", 1, 20f);
+            InvokeRepeating("Shoot", 1, 5f);
     }
 
     // Update is called once per frame
@@ -49,15 +49,18 @@ public class PlayerController : MonoBehaviour {
         if (moveForward)
         {
             //Vector3 newPos = (speed * Vector3.up) * Time.deltaTime;
-            rb.MovePosition(transform.position + Vector3.up);
+            rb.MovePosition(transform.position + Vector3.up * speed);
         }
         else
         {
-            rb.MovePosition(transform.position + Vector3.down);
+            rb.MovePosition(transform.position + Vector3.down * speed);
         }
 
     }
 
+    /// <summary>
+    /// AutoFires bullet at closest enemy
+    /// </summary>
     private void Shoot()
     {
         GameObject playerBullet = PlayerBulletController.Instance.GetObjectFromPool();
@@ -66,10 +69,12 @@ public class PlayerController : MonoBehaviour {
         {
             GameObject closestEnemy = enemyController.activeEnemies.GetClosest(transform.position);
 
-            playerBullet.SetActive(true);
+            
             if (closestEnemy != null)
             {
+                playerBullet.SetActive(true);
                 Debug.Log("found enemy: " + closestEnemy.name);
+
                 Vector3 bulletTarget = closestEnemy.transform.position;
                 playerBullet.GetComponent<Bullet>().Shoot(transform.position, bulletTarget);
             }
@@ -79,6 +84,14 @@ public class PlayerController : MonoBehaviour {
 
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Bullet")
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }

@@ -27,6 +27,12 @@ public class Bullet : MonoBehaviour {
     {
         transform.position = spawnerPos;
         GetComponent<Rigidbody2D>().AddForce(targetDir * speed);
+        //beingFired = true;
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void OnDisable()
@@ -36,7 +42,7 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("BULLET HIT");
+        Debug.Log("BULLET HIT" + col.gameObject.name);
         gameObject.SetActive(false);
     }
 }
