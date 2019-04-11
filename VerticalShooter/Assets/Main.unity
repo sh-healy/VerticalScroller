@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a2c71667b31f94193b53d5bf4ff550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.075
+  speed: 0.75
   enemyController: {fileID: 2002915777}
   shoot: 0
   tst: {fileID: 2002915780}

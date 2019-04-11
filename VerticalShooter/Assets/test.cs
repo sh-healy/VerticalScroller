@@ -16,7 +16,7 @@ public class test : Singleton<test> {
             enemyTree.Add(enemies[i]);
         }
 
-       // enemyTree.ShowList();
+       //s enemyTree.ShowList();
         
     }
 

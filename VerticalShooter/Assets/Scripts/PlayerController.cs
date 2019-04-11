@@ -49,11 +49,11 @@ public class PlayerController : MonoBehaviour {
         if (moveForward)
         {
             //Vector3 newPos = (speed * Vector3.up) * Time.deltaTime;
-            rb.MovePosition(transform.position + Vector3.up * speed);
+            rb.MovePosition(transform.position + Vector3.up * speed * Time.deltaTime);
         }
         else
         {
-            rb.MovePosition(transform.position + Vector3.down * speed);
+            rb.MovePosition(transform.position + Vector3.down * speed * Time.deltaTime);
         }
 
     }
