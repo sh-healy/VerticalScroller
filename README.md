@@ -14,7 +14,7 @@ Download project and open with Unity
 
 ## Controls
 ---
-* Press space bar or up arrow to move up
+* Press space bar to move up
 * Release space bar to fall back
 * Player Autofires on enemies
 * Press R to restart
