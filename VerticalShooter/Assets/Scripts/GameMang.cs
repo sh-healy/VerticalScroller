@@ -22,7 +22,6 @@ public class GameMang : Singleton<GameMang> {
     /// </summary>
     public void GameEnd()
     {
-        Debug.Log("Game Over");
         GameFinished?.Invoke();
     }
 

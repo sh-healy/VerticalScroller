@@ -28,11 +28,11 @@ public class ScoreKeeper : Singleton<ScoreKeeper>
     #region Monobehaviour methods
 
     // Use this for initialization
-    private void Start () {
-
+    private void Awake () {
+        base.Awake();
 
         HighestScore = PlayerPrefs.HasKey("HighestScore")? PlayerPrefs.GetFloat("HighestScore") : 0;
-        
+              
 
         GameMang.Instance.GameFinished += GameEnd;
 	}

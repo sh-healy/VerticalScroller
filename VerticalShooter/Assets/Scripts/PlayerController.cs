@@ -54,9 +54,9 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))//(Input.GetKey(KeyCode.Space))
             moveForward = true;
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("Jump"))//(Input.GetKeyUp(KeyCode.Space))
             moveForward = false;
     }
 

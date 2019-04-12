@@ -128,10 +128,12 @@ public class Tree
         last = addedNode;
         
         addedNode.level = parent.level + 1;
-        
+
         //check if comparing the x or y based on level
-        float xyOfParentNode = CheckXOrY(parent.level, parent.obj.transform.position);
-        float xyOfNewNode = CheckXOrY(parent.level, addedNode.obj.transform.position);
+        bool isXAligned = IsXAligned(parent.level);
+
+        float xyOfParentNode = isXAligned ? parent.obj.transform.position.x : parent.obj.transform.position.y;
+        float xyOfNewNode = isXAligned ? addedNode.obj.transform.position.x : addedNode.obj.transform.position.y;
 
         //if x or y is less than parent node add to the left else right
         if (xyOfNewNode < xyOfParentNode)
@@ -154,8 +156,10 @@ public class Tree
         while (current != null)
         {
             //check if comparing the x or y based on level
-            float xyOfCurrNode = CheckXOrY(current.level, current.obj.transform.position);
-            float xyOfNewNode = CheckXOrY(current.level, position);
+            bool isXAligned = IsXAligned(current.level);
+
+            float xyOfCurrNode = isXAligned? current.obj.transform.position.x : current.obj.transform.position.y;
+            float xyOfNewNode = isXAligned ? position.x : position.y;
 
             parent = current;
 
@@ -220,8 +224,10 @@ public class Tree
             }
 
             //check if comparing the x or y based on level
-            float xyOfCurrNode = CheckXOrY(current.level, current.obj.transform.position);
-            float xyOfSearchNode = CheckXOrY(current.level, position);
+            bool isXAligned = IsXAligned(current.level);
+
+            float xyOfCurrNode = isXAligned ? current.obj.transform.position.x : current.obj.transform.position.y;
+            float xyOfSearchNode = isXAligned ? position.x : position.y;
 
             //if x or y of position being checked is less than than the x/y of current node
             if (xyOfSearchNode < xyOfCurrNode)
@@ -251,15 +257,14 @@ public class Tree
     }
 
     /// <summary>
-    /// checks if we should be compaing the x or y value of the point on the tree based on the level
+    /// checks if we should be compaing the level of the tree is even therefore x aligned to compare to
     /// </summary>
     /// <param name="lvl">level were checking against, determines whether its x aligned or y aligned</param>
-    /// <param name="position">the position in the tree were checking against or inserting</param>
-    /// <returns>returns x value or y value based on the level of the tree</returns>
-    private float CheckXOrY(int lvl, Vector2 position)
+    /// <returns>returns true is level is x aligned</returns>
+    private bool IsXAligned(int lvl)
     {
-        float val = lvl % 2 == 0 ? position.x : position.y;
-        return val;
+        bool isXAligned = lvl % 2 == 0;
+        return isXAligned;
     }
 
     /// <summary>

@@ -19,6 +19,11 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public bool shoot;
 
+    /// <summary>
+    /// bool to track if the game was stopped
+    /// </summary>
+    private bool applicationWasQuit;
+
     #region Monobehaviour methods
     private void OnEnable()
     {
@@ -37,8 +42,17 @@ public class Enemy : MonoBehaviour {
 
     private void OnDisable()
     {
-        controller.activeEnemies.RemoveObj(gameObject);
-        CancelInvoke();
+        if (!applicationWasQuit)
+        {
+            controller.activeEnemies.RemoveObj(gameObject);
+            CancelInvoke();
+        }
+        
+    }
+
+    private void OnApplicationQuit()
+    {
+        applicationWasQuit = true;
     }
 
     #endregion Monobehaviour methods
