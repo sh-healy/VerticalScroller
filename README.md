@@ -2,6 +2,9 @@
 ---
 Unity project containing vertical scroller game
 
+![](Images/start.png)
+![](Images/MidGame.png)
+
 ## Getting Started
 ---
 ### Prerequisites
@@ -22,6 +25,7 @@ Download project and open with Unity
 ## Notes
 ---
 * Example of nearest neighbour searching using KD trees
+* Object pooling script
 
 
 ## Tested Versions
