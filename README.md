@@ -2,8 +2,8 @@
 ---
 Unity project containing vertical scroller game
 
-![](Images/start.png)
-![](Images/MidGame.png)
+![](Images/start.PNG)
+![](Images/MidGame.PNG)
 
 ## Getting Started
 ---
