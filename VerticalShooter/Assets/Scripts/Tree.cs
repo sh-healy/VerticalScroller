@@ -22,7 +22,7 @@ public class Tree
     /// <summary>
     /// List of all the nodes in the tree
     /// </summary>
-    public TreeNode[] nodesInTree;
+    public TreeNode[] nodesToCheck;
 
     #region pubic methods
 
@@ -187,32 +187,33 @@ public class Tree
         float nearestDist = float.MaxValue;
         TreeNode nearest = null;
 
-        //check if nodesInTree has been initilized and if the length is the same as the amount of nodes we've added
-        if (nodesInTree == null || nodesInTree.Length < count)
-            nodesInTree = new TreeNode[count];
+        //check if nodesToCheck has been initilized and if the length is the same as the amount of nodes we've added
+        if (nodesToCheck == null || nodesToCheck.Length < count)
+            nodesToCheck = new TreeNode[count];
 
         //reset tree
-        for (int i = 0; i < nodesInTree.Length; i++)
+        for (int i = 0; i < nodesToCheck.Length; i++)
         {
-            nodesInTree[i] = null;
+            nodesToCheck[i] = null;
         }
 
-        //nodes we've added to the list
+        //nodes we've added to check
         int addCount = 0;
 
-        //index were at in the array
-        int currentNodesInTree = 0;
+        //nodes we're checking in the array
+        int currNodeToCheck = 0;
 
         if (root != null)
-            nodesInTree[addCount++] = root;
+            nodesToCheck[addCount++] = root;
 
         TreeNode current;
 
         
         //while inside array of nodes AND the node in the array of nodes is null/empty
-        while (currentNodesInTree < nodesInTree.Length && nodesInTree[currentNodesInTree] != null)
+        while (currNodeToCheck < nodesToCheck.Length && nodesToCheck[currNodeToCheck] != null)
         {
-            current = nodesInTree[currentNodesInTree++];
+            //check the next node in the iist
+            current = nodesToCheck[currNodeToCheck++];
 
             float distanceBetween = Vector2.Distance(position, current.obj.transform.position);
 
@@ -232,21 +233,21 @@ public class Tree
             //if x or y of position being checked is less than than the x/y of current node
             if (xyOfSearchNode < xyOfCurrNode)
             {
-                //go left
+                //add left node to nodes to check
                 if (current.left != null)
-                    nodesInTree[addCount++] = current.left;
-                //go right
+                    nodesToCheck[addCount++] = current.left;
+                //add right node to nodes to check
                 if (Mathf.Abs(xyOfCurrNode - xyOfSearchNode) * Mathf.Abs(xyOfCurrNode - xyOfSearchNode) < nearestDist && current.right != null)
-                    nodesInTree[addCount++] = current.right;
+                    nodesToCheck[addCount++] = current.right;
             }
             else
             {
-                //go right
+                //add right node to nodes to check
                 if (current.right != null)
-                    nodesInTree[addCount++] = current.right; 
-                //go left
+                    nodesToCheck[addCount++] = current.right;
+                //add left node to nodes to check
                 if (Mathf.Abs(xyOfCurrNode - xyOfSearchNode) * Mathf.Abs(xyOfCurrNode - xyOfSearchNode) < nearestDist && current.left != null)
-                    nodesInTree[addCount++] = current.left; 
+                    nodesToCheck[addCount++] = current.left; 
             }
             
 

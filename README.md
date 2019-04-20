@@ -19,6 +19,9 @@ Download project and open with Unity
 * Player Autofires on enemies
 * Press R to restart
 
+## Notes
+---
+* Example of nearest neighbour searching using KD trees
 
 
 ## Tested Versions
